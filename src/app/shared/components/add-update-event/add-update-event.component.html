@@ -1,0 +1,67 @@
+<app-header [isModal]="true" [title]="event ? 'actualizar evento' :'Agregar evento'"></app-header>
+
+<ion-content>
+  <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+ 
+
+    <!-- Componente de imagen -->
+    <ion-avatar *ngIf="form.value.Image">
+      <img [src]="form.value.Image"  />
+    </ion-avatar>
+
+    <!-- si no existe se muestra Icono de imagen -->
+    <ion-icon class="image-icon" *ngIf="!form.value.Image" name="image-outline"></ion-icon>
+
+    <br>
+  
+    <!-- Botón para tomar imagen -->
+    <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+      Tomar/seleccionar
+    </ion-button>
+    
+
+    <app-custom-input autocomplete="name" [Control]="form.controls.name" type="name"
+      label="Nombre"></app-custom-input>
+
+    <div class="validators" *ngIf="form.controls.name.errors && form.controls.name.touched">
+      <div *ngIf="form.controls.name.errors?.['minlength']">El nombre debe tener al menos 6 caracteres</div>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea 
+        formControlName="description" 
+        (input)="updateCharCount(); adjustTextareaHeight(event)">
+      </ion-textarea>
+    </ion-item>
+    
+    <ion-text>{{ charCount }}/1000 caracteres</ion-text>
+    
+
+    <ion-item class="datetime">
+      <ion-label>Fecha</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" formControlName="date"></ion-datetime>
+    </ion-item>
+
+    
+    
+
+    <app-custom-input [Control]="form.controls.location" type="text" label="Ubicación"></app-custom-input>
+
+    <!-- Componente de mapa -->
+    <app-map (locationSelected)="onLocationSelected($event)"></app-map>
+
+    <ion-button mode="ios" class="ion-margin" type="submit" [disabled]="form.invalid" expand="block" color="primary">
+      {{ event ? 'actualizar evento' : 'Agregar evento' }}
+      <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-button>
+
+     <!-- Botón con atributo inert -->
+     <button type="button" class="button-native" part="native" inert>
+      <ion-icon part="close-icon" class="close-icon ios hydrated" role="img"></ion-icon>
+      <span class="button-inner">Cerrar</span>
+    </button>
+
+  </form>
+</ion-content>

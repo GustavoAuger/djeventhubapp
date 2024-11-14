@@ -1,0 +1,45 @@
+<app-header title="Mis Eventos" >
+
+
+</app-header>
+
+<ion-content>
+
+
+  
+    
+  <ion-list>
+    <ion-item-sliding class="product-item" *ngFor="let event of events">
+      <ion-item >
+        <ion-avatar>
+          <img [src]="event.Image">
+        </ion-avatar>
+        <ion-label><div class="name">{{event.name}}</div>
+        </ion-label>
+      </ion-item>
+      
+      <ion-item-options side="end">
+
+        <ion-item-option (click)="addUpdateEvent( event)">
+          <ion-icon class="option-btn" name="create"  ></ion-icon>
+        </ion-item-option>
+
+
+        <ion-item-option (click)="deleteEvent(event)" color="danger">
+          <ion-icon class="option-btn" name="trash"  ></ion-icon>
+        </ion-item-option>
+
+      </ion-item-options>
+      
+        
+    </ion-item-sliding> 
+
+  </ion-list>
+  
+      
+      
+  
+  
+
+
+</ion-content>

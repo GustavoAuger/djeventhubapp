@@ -1,0 +1,102 @@
+<app-header title="Inicio" >
+
+
+</app-header>
+<ion-content >
+  <ion-fab horrizontal="end" vertical="bottom"  slot="fixed">
+    <ion-fab-button  (click)="addUpdateEvent()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+    
+    <ion-item>
+      <ion-label position="floating" > Dirección </ion-label>
+      <ion-input id="autocomplete" placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" (click)="useManualLocation()">Usar esta dirección</ion-button>
+  
+
+
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>¡Bienvenido!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Estos son los Eventos.</p>
+    </ion-card-content>
+    </ion-card>
+    
+    <ion-content class="ion-padding">
+      <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
+    <ion-list>
+      <ion-item-sliding class="product-item" *ngFor="let event of events">
+        <ion-item (click)="openEventModal(event.id)">
+          <ion-avatar>
+            <img [src]="event.Image">
+          </ion-avatar>
+          <ion-label><div class="name">{{event.name}}</div>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="start">
+          
+        </ion-item-options>
+    
+        
+      </ion-item-sliding>
+    </ion-list>
+
+ 
+
+  
+
+  <ion-modal #eventModal [cssClass]="'modal-open'">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ selectedEvent.name }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeEventModal()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+             <!-- Mostrar imagen del evento -->
+             <ion-item>
+              <div class="image-container">
+                <img [src]="selectedEvent.Image" class="event-image">
+              </div>
+            </ion-item>
+
+        <ion-item>
+          <ion-label>Descripción</ion-label>
+          <ion-text>{{ selectedEvent.description }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Fecha</ion-label>
+          <ion-text>{{ selectedEvent.date | date }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Hora</ion-label>
+          <ion-text>{{ selectedEvent.date | date: 'shortTime' }}</ion-text>
+        </ion-item>
+  
+       
+  
+        <!-- Mostrar mapa de la ubicación -->
+
+        <app-map [location]="selectedEvent.location"></app-map>
+
+        <ion-button expand="block" color="primary" (click)="postulate()">Postular</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  
+
+
+</ion-content>

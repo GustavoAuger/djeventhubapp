@@ -1,0 +1,79 @@
+ion-content {
+
+    --background: var(--ion-color-primary);
+    --color : var(--ion-color-primary-contrast);
+    --padding-top: 20px;
+
+    // Add your styles here
+}
+
+ion-item {
+    font-size: 14px;
+    --background: var(--ion-color-primary);
+    color : var(--ion-color-light);
+
+    ion-icon {
+        color: var(--ion-color-light);
+    }
+
+    &.active {
+        color: var(--ion-color-warning);
+
+        ion-icon {
+            color: var(--ion-color-warning);
+        }
+        
+    }
+}
+
+ion-menu {
+  --width: 200px;
+  --min--width: 200px;
+  outline: none;
+}
+
+.event-card {
+    margin: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .event-card ion-card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  
+  .event-card ion-card-subtitle {
+    font-size: 1rem;
+    color: #8c8c8c;
+  }
+  
+  .event-card ion-card-content {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 8px 0;
+  }
+  
+  .event-card ion-card-content ion-icon {
+    margin-right: 8px;
+    color: #3880ff;
+  }
+  
+  .event-card ion-footer {
+    padding: 0;
+  }
+  
+  .event-card ion-button {
+    border-radius: 0;
+  }
+  
+
+
+  .icono-perfil {
+    width: 40px; /* Ajusta el tamaño según sea necesario */
+    height: 40px; /* Ajusta el tamaño según sea necesario */
+    border-radius: 50%; /* Para que sea circular */
+    overflow: hidden;
+  }

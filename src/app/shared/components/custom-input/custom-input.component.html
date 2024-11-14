@@ -1,0 +1,28 @@
+<ion-item class="custom-input" lines="none">
+  <ion-icon color="primary" *ngIf="icon" slot="start" [name]="icon"></ion-icon>
+
+  <ion-input
+    *ngIf="type !== 'textarea'; else textarea"
+    [type]="type"
+    [autocomplete]="autocomplete"
+    [label]="label"
+    [formControl]="Control"
+    labelPlacement="floating"
+  ></ion-input>
+
+  <ng-template #textarea>
+    <ion-textarea
+      [formControl]="Control"
+      [maxlength]="maxlength"
+      [label]="label"
+      labelPlacement="floating"
+      [autoGrow]="autoGrow"
+      (ionInput)="onInputChange()"
+    ></ion-textarea>
+  </ng-template>
+
+  <ion-button *ngIf="isPassword" (click)="showOrHidePassword()" slot="end" fill="clear" shape="round">
+    <ion-icon slot="icon-only" [name]="hide ? 'eye-outline' : 'eye-outline'"></ion-icon>
+  </ion-button>
+</ion-item>
+<div *ngIf="type === 'textarea'" class="char-counter">{{ charCount }}/{{ maxlength }}</div>
